@@ -41,7 +41,7 @@
           <strong>1900 633 928</strong>
         </div>
       </a>
-      <button class="cart-btn" id="cartBtn" aria-label="Giỏ hàng">
+      <button class="cart-btn" id="cartBtn" onclick="openCartModal()" aria-label="Giỏ hàng">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge" id="cartCount">0</span>
       </button>
@@ -673,6 +673,106 @@
     </div>
   </div>
 </footer>
+
+<!-- ======= CART MODAL ======= -->
+<div id="cart-modal" class="modal-overlay" onclick="overlayClickCart(event)">
+  <div class="modal-box cart-modal-box">
+    <button class="modal-close" onclick="closeCartModal()" aria-label="Đóng"><i class="fas fa-times"></i></button>
+    <div class="cart-modal-head">
+      <i class="fas fa-shopping-cart"></i>
+      <h2>GIỎ HÀNG CỦA BẠN</h2>
+      <span class="cart-item-count" id="cart-item-count">0 sản phẩm</span>
+    </div>
+
+    <div id="cart-empty" class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Giỏ hàng đang trống</p>
+      <button class="btn btn-primary" onclick="closeCartModal(); document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-store"></i> Tiếp Tục Mua Sắm
+      </button>
+    </div>
+
+    <div id="cart-has-items" hidden>
+      <ul class="cart-list" id="cart-list"></ul>
+
+      <div class="cart-summary">
+        <div class="cart-summary-row">
+          <span>Tạm tính</span>
+          <span id="cart-subtotal">0đ</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Phí vận chuyển</span>
+          <span class="shipping-free" id="cart-shipping">Miễn phí</span>
+        </div>
+        <div class="cart-summary-row cart-total-row">
+          <span>Tổng cộng</span>
+          <span class="cart-total-price" id="cart-total">0đ</span>
+        </div>
+      </div>
+
+      <div class="cart-actions">
+        <button class="btn btn-outline" onclick="closeCartModal(); document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-arrow-left"></i> Tiếp Tục Mua
+        </button>
+        <button class="btn btn-primary" onclick="openCheckoutFromCart()">
+          <i class="fas fa-credit-card"></i> MUA NGAY
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= CHECKOUT MODAL (từ giỏ hàng) ======= -->
+<div id="checkout-modal" class="modal-overlay" onclick="overlayClickCheckout(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeCheckoutModal()" aria-label="Đóng"><i class="fas fa-times"></i></button>
+
+    <div id="checkout-form-wrap">
+      <div class="modal-head">
+        <div class="modal-logo">
+          <span class="brand-icon"><i class="fas fa-plus-circle"></i></span>
+          <span class="brand-text">VHP <strong>CARE</strong></span>
+        </div>
+        <h2>ĐẶT HÀNG NGAY</h2>
+        <p>Điền thông tin – chúng tôi liên hệ xác nhận trong <strong>15 phút</strong></p>
+      </div>
+
+      <div id="checkout-order-summary" class="checkout-order-summary"></div>
+
+      <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" novalidate style="padding-top:0">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ck-name">Họ và tên <span class="req">*</span></label>
+            <input id="ck-name" type="text" name="name" placeholder="Nguyễn Thị A" required>
+          </div>
+          <div class="form-group">
+            <label for="ck-phone">Số điện thoại <span class="req">*</span></label>
+            <input id="ck-phone" type="tel" name="phone" placeholder="0912 345 678" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ck-addr">Địa chỉ giao hàng <span class="req">*</span></label>
+          <input id="ck-addr" type="text" name="address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành" required>
+        </div>
+        <div class="form-group">
+          <label for="ck-note">Ghi chú</label>
+          <textarea id="ck-note" name="note" rows="2" placeholder="Ghi chú thêm (nếu có)..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="checkout-submit-btn">
+          <span class="lbl"><i class="fas fa-paper-plane"></i> XÁC NHẬN ĐẶT HÀNG</span>
+          <span class="spin"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="checkout-success" class="modal-success" hidden>
+      <div class="success-ico"><i class="fas fa-check-circle"></i></div>
+      <h3>Đặt hàng thành công!</h3>
+      <p>Chúng tôi đã nhận đơn và sẽ liên hệ xác nhận trong vòng <strong>15 phút</strong>.</p>
+      <button class="btn btn-primary" onclick="closeCheckoutModal(); clearCart()">Đóng</button>
+    </div>
+  </div>
+</div>
 
 <!-- ======= CONTACT MODAL ======= -->
 <div id="contact-modal" class="modal-overlay" onclick="overlayClickContact(event)">
