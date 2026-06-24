@@ -169,156 +169,168 @@
     <h2 class="section-title fade-up">SẢN PHẨM NỔI BẬT 🌿</h2>
     <p class="section-sub fade-up">Những sản phẩm được yêu thích và tin dùng nhất</p>
 
-    <div class="products-grid">
+    <div class="products-slider-wrap">
+      <button class="prod-arrow prod-prev" onclick="prodSlide(-1)" aria-label="Slide trước">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="products-viewport" id="productsViewport">
+        <div class="products-track" id="productsTrack">
 
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/1.webp" alt="Combo 2 Xịt Vùng Kín" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-sale">-48%</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Combo 2 Xịt Vùng Kín Femini Inner Spray 30ml</h3>
-          <p class="product-desc-short">Làm sạch, kháng viêm, khử mùi, hương thơm mát</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="rv-score-val">4.9</span>
-            <span class="rv-sold">704 đã bán</span>
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/1.webp" alt="Combo 2 Xịt Vùng Kín" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-sale">-48%</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Combo 2 Xịt Vùng Kín Femini Inner Spray 30ml</h3>
+              <p class="product-desc-short">Làm sạch, kháng viêm, khử mùi, hương thơm mát</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rv-score-val">4.9</span>
+                <span class="rv-sold">704 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">279.000đ</span>
+                <span class="price-old">540.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Combo 2 Xịt Femini 30ml', 279000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="product-price-row">
-            <span class="price-now">279.000đ</span>
-            <span class="price-old">540.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Combo 2 Xịt Femini 30ml', 279000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
+
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/2.webp" alt="Xịt Phụ Khoa Femini" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-sale">-33%</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Xịt Phụ Khoa Femini Inner Spray 30ml</h3>
+              <p class="product-desc-short">Làm sạch dịu nhẹ, khử mùi, kháng khuẩn</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rv-score-val">5.0</span>
+                <span class="rv-sold">512 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">159.000đ</span>
+                <span class="price-old">240.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Xịt Femini Inner Spray 30ml', 159000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
           </div>
+
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/1.2.webp" alt="Combo 3 Xịt Phụ Khoa" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-sale">-40%</span>
+              <span class="combo-badge">x3</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Combo 3 Xịt Phụ Khoa Femini Inner Spray 30ml</h3>
+              <p class="product-desc-short">Hỗ trợ giảm ngứa, kháng khuẩn, khử mùi</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rv-score-val">5.0</span>
+                <span class="rv-sold">309 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">399.000đ</span>
+                <span class="price-old">780.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Combo 3 Xịt Femini 30ml', 399000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/3.webp" alt="Feminner Bọt Vệ Sinh" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-sale">-31%</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Feminner Bọt Vệ Sinh Phụ Nữ Femini Sensi 100ml</h3>
+              <p class="product-desc-short">Làm sạch dịu nhẹ, cân bằng pH cho da nhạy cảm</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rv-score-val">4.9</span>
+                <span class="rv-sold">310 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">165.000đ</span>
+                <span class="price-old">240.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Feminner Bọt Vệ Sinh 100ml', 165000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/2.1.webp" alt="Dung Dịch Vệ Sinh" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-new">MỚI</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Dung Dịch Vệ Sinh Phụ Nữ Dịu Nhẹ 200ml</h3>
+              <p class="product-desc-short">Làm sạch sâu, dưỡng ẩm, hương thơm dễ chịu</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span class="rv-score-val">4.8</span>
+                <span class="rv-sold">256 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">129.000đ</span>
+                <span class="price-old">189.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Dung Dịch Vệ Sinh Phụ Nữ 200ml', 129000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="images/3.1.webp" alt="Muối Tắm Khoáng" loading="lazy">
+              <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
+              <span class="product-badge badge-sale">-25%</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Muối Tắm Khoáng Epsom Salt Thư Giãn 500g</h3>
+              <p class="product-desc-short">Thư giãn cơ bắp, giảm căng thẳng, mịn da</p>
+              <div class="product-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rv-score-val">4.7</span>
+                <span class="rv-sold">189 đã bán</span>
+              </div>
+              <div class="product-price-row">
+                <span class="price-now">149.000đ</span>
+                <span class="price-old">199.000đ</span>
+                <button class="btn-add-cart" onclick="addToCart(this, 'Muối Tắm Epsom Salt 500g', 149000)" aria-label="Thêm vào giỏ">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/2.webp" alt="Xịt Phụ Khoa Femini" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-sale">-33%</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Xịt Phụ Khoa Femini Inner Spray 30ml</h3>
-          <p class="product-desc-short">Làm sạch dịu nhẹ, khử mùi, kháng khuẩn</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="rv-score-val">5.0</span>
-            <span class="rv-sold">512 đã bán</span>
-          </div>
-          <div class="product-price-row">
-            <span class="price-now">159.000đ</span>
-            <span class="price-old">240.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Xịt Femini Inner Spray 30ml', 159000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/1.2.webp" alt="Combo 3 Xịt Phụ Khoa" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-sale">-40%</span>
-          <span class="combo-badge">x3</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Combo 3 Xịt Phụ Khoa Femini Inner Spray 30ml</h3>
-          <p class="product-desc-short">Hỗ trợ giảm ngứa, kháng khuẩn, khử mùi</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="rv-score-val">5.0</span>
-            <span class="rv-sold">309 đã bán</span>
-          </div>
-          <div class="product-price-row">
-            <span class="price-now">399.000đ</span>
-            <span class="price-old">780.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Combo 3 Xịt Femini 30ml', 399000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/3.webp" alt="Feminner Bọt Vệ Sinh" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-sale">-31%</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Feminner Bọt Vệ Sinh Phụ Nữ Femini Sensi 100ml</h3>
-          <p class="product-desc-short">Làm sạch dịu nhẹ, cân bằng pH cho da nhạy cảm</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="rv-score-val">4.9</span>
-            <span class="rv-sold">310 đã bán</span>
-          </div>
-          <div class="product-price-row">
-            <span class="price-now">165.000đ</span>
-            <span class="price-old">240.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Feminner Bọt Vệ Sinh 100ml', 165000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/2.1.webp" alt="Dung Dịch Vệ Sinh" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-new">MỚI</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Dung Dịch Vệ Sinh Phụ Nữ Dịu Nhẹ 200ml</h3>
-          <p class="product-desc-short">Làm sạch sâu, dưỡng ẩm, hương thơm dễ chịu</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-            <span class="rv-score-val">4.8</span>
-            <span class="rv-sold">256 đã bán</span>
-          </div>
-          <div class="product-price-row">
-            <span class="price-now">129.000đ</span>
-            <span class="price-old">189.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Dung Dịch Vệ Sinh Phụ Nữ 200ml', 129000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card fade-up">
-        <div class="product-img-wrap">
-          <img src="images/3.1.webp" alt="Muối Tắm Khoáng" loading="lazy">
-          <button class="product-fav" aria-label="Yêu thích" onclick="toggleFav(this)"><i class="far fa-heart"></i></button>
-          <span class="product-badge badge-sale">-25%</span>
-        </div>
-        <div class="product-info">
-          <h3 class="product-name">Muối Tắm Khoáng Epsom Salt Thư Giãn 500g</h3>
-          <p class="product-desc-short">Thư giãn cơ bắp, giảm căng thẳng, mịn da</p>
-          <div class="product-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="rv-score-val">4.7</span>
-            <span class="rv-sold">189 đã bán</span>
-          </div>
-          <div class="product-price-row">
-            <span class="price-now">149.000đ</span>
-            <span class="price-old">199.000đ</span>
-            <button class="btn-add-cart" onclick="addToCart(this, 'Muối Tắm Epsom Salt 500g', 149000)" aria-label="Thêm vào giỏ">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <button class="prod-arrow prod-next" onclick="prodSlide(1)" aria-label="Slide tiếp">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
 
-    <div class="text-center fade-up" style="margin-top:40px">
+    <div class="prod-dots" id="prodDots"></div>
+
+    <div class="text-center fade-up" style="margin-top:32px">
       <button class="btn btn-outline">XEM TẤT CẢ SẢN PHẨM</button>
     </div>
   </div>

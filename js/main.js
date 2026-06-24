@@ -1,14 +1,25 @@
 /* =========================================
    VHP CARE – main.js
 
-   CẤU HÌNH EMAIL (Formspree):
-   1. Vào https://formspree.io → Đăng ký bằng eros.yun711@gmail.com
-   2. Tạo form mới → Copy Form ID (dạng: xpwaoryz)
-   3. Thay FORMSPREE_ID bên dưới bằng ID của bạn
+   CẤU HÌNH GOOGLE APPS SCRIPT:
+   1. Mở file Code.gs → paste vào https://script.google.com
+   2. Deploy → New deployment → Web app (Anyone can access)
+   3. Copy URL và paste vào SCRIPT_URL bên dưới
    ========================================= */
 
-const TO_EMAIL     = 'eros.yun711@gmail.com';
-const FORMSPREE_ID = '';   // ← paste Formspree form ID vào đây
+const TO_EMAIL   = 'phuongvuhoang8497@gmail.com';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhpyPyYIsT8Syy8bPnxrNWq3MBN751uWsWhO2jzTWn_RwApPlBEocdiEXcZHSQaU3Y/exec'; // ← paste Google Apps Script Web App URL vào đây
+
+function sendToScript(params, onSuccess, onFail) {
+  if (!SCRIPT_URL) { onFail(); return; }
+  fetch(SCRIPT_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body:    JSON.stringify(params),
+  })
+  .then(r => r.ok ? onSuccess() : onFail())
+  .catch(onFail);
+}
 
 /* =========================================
    HEADER – sticky
@@ -91,6 +102,73 @@ startHeroAuto();
 })();
 
 /* =========================================
+   PRODUCTS SLIDER
+   ========================================= */
+const PROD_TOTAL   = 6;
+let prodIdx = 0;
+let prodAutoTimer;
+
+const PROD_VISIBLE = () => window.innerWidth <= 480 ? 1 : window.innerWidth <= 1100 ? 2 : 4;
+
+function buildProdDots() {
+  const dotsEl  = document.getElementById('prodDots');
+  const visible = PROD_VISIBLE();
+  const maxIdx  = Math.max(0, PROD_TOTAL - visible);
+  dotsEl.innerHTML = '';
+  for (let i = 0; i <= maxIdx; i++) {
+    const d = document.createElement('span');
+    d.className = 'prod-dot' + (i === prodIdx ? ' active' : '');
+    d.onclick   = () => { prodGoTo(i); };
+    dotsEl.appendChild(d);
+  }
+}
+
+function prodGoTo(n) {
+  const track   = document.getElementById('productsTrack');
+  const visible = PROD_VISIBLE();
+  const maxIdx  = Math.max(0, PROD_TOTAL - visible);
+  prodIdx = Math.max(0, Math.min(n, maxIdx));
+  const slideW  = track.children[0].offsetWidth + 20;
+  track.style.transform = `translateX(-${prodIdx * slideW}px)`;
+  document.querySelectorAll('.prod-dot').forEach((d, i) => d.classList.toggle('active', i === prodIdx));
+}
+
+function prodSlide(dir) {
+  clearTimeout(prodAutoTimer);
+  prodGoTo(prodIdx + dir);
+  startProdAuto();
+}
+
+function startProdAuto() {
+  clearTimeout(prodAutoTimer);
+  prodAutoTimer = setTimeout(() => {
+    const visible = PROD_VISIBLE();
+    const maxIdx  = Math.max(0, PROD_TOTAL - visible);
+    prodGoTo(prodIdx >= maxIdx ? 0 : prodIdx + 1);
+    startProdAuto();
+  }, 4000);
+}
+
+window.addEventListener('resize', () => {
+  prodGoTo(0);
+  buildProdDots();
+}, { passive: true });
+buildProdDots();
+startProdAuto();
+
+// Touch support for products
+(function () {
+  const vp = document.getElementById('productsViewport');
+  if (!vp) return;
+  let startX = 0;
+  vp.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) prodSlide(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
+/* =========================================
    GALLERY SLIDESHOW
    ========================================= */
 const GALLERY_VISIBLE = () => window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : window.innerWidth <= 1100 ? 3 : 4;
@@ -159,13 +237,29 @@ startGalleryAuto();
 })();
 
 /* =========================================
+   CART STORAGE (localStorage)
+   ========================================= */
+const CART_KEY = 'vhp_cart';
+
+function saveCart() {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cartItems)); } catch {}
+}
+
+function loadCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch { return []; }
+}
+
+function clearCartStorage() {
+  try { localStorage.removeItem(CART_KEY); } catch {}
+}
+
+/* =========================================
    CART – dữ liệu & render
    ========================================= */
 // items: [{ name, price, img, qty }]
-let cartItems = [];
+let cartItems = loadCart();
 
 function addToCart(btn, name, price) {
-  // Lấy ảnh gần nhất trong card
   const card = btn.closest('.product-card');
   const img  = card ? card.querySelector('img')?.src : 'images/1.webp';
 
@@ -176,11 +270,11 @@ function addToCart(btn, name, price) {
     cartItems.push({ name, price, img, qty: 1 });
   }
 
+  saveCart();
   updateCartBadge();
   btn.classList.add('bounce');
   setTimeout(() => btn.classList.remove('bounce'), 400);
 
-  // Mini flash trên badge
   const badge = document.getElementById('cartCount');
   badge.classList.add('badge-pop');
   setTimeout(() => badge.classList.remove('badge-pop'), 400);
@@ -188,6 +282,7 @@ function addToCart(btn, name, price) {
 
 function removeFromCart(name) {
   cartItems = cartItems.filter(i => i.name !== name);
+  saveCart();
   updateCartBadge();
   renderCartList();
 }
@@ -196,6 +291,7 @@ function changeQtyCart(name, delta) {
   const item = cartItems.find(i => i.name === name);
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
+  saveCart();
   updateCartBadge();
   renderCartList();
 }
@@ -259,9 +355,13 @@ function renderCartList() {
 
 function clearCart() {
   cartItems = [];
+  clearCartStorage();
   updateCartBadge();
   renderCartList();
 }
+
+// Khởi tạo badge từ cookie ngay khi script load
+updateCartBadge();
 
 /* =========================================
    CART MODAL
@@ -370,17 +470,11 @@ function handleCheckoutSubmit(e) {
     total:   fmtPrice(cartSubtotal()),
   };
 
-  if (FORMSPREE_ID) {
-    fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(params),
-    })
-      .then(r => r.ok ? showCheckoutSuccess() : fallbackOrderMailto(params))
-      .catch(()  => fallbackOrderMailto(params));
-  } else {
-    fallbackOrderMailto(params);
-  }
+  sendToScript(
+    { type: 'order', ...params },
+    showCheckoutSuccess,
+    () => fallbackOrderMailto(params)
+  );
 }
 
 function fallbackOrderMailto(p) {
@@ -393,6 +487,7 @@ function fallbackOrderMailto(p) {
 }
 
 function showCheckoutSuccess() {
+  clearCart();
   checkoutFormW.style.display = 'none';
   checkoutSuccEl.hidden = false;
 }
@@ -475,17 +570,11 @@ function handleContactSubmit(e) {
     message: data.get('message') || '',
   };
 
-  if (FORMSPREE_ID) {
-    fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(params),
-    })
-      .then(r => r.ok ? showContactSuccess() : fallbackMailto(params))
-      .catch(()  => fallbackMailto(params));
-  } else {
-    fallbackMailto(params);
-  }
+  sendToScript(
+    { type: 'contact', ...params },
+    showContactSuccess,
+    () => fallbackMailto(params)
+  );
 }
 
 function fallbackMailto(p) {
