@@ -18,38 +18,25 @@
       <span class="brand-text">VHP <strong>CARE</strong></span>
     </a>
 
-    <div class="nav-search">
-      <input type="text" placeholder="Tìm kiếm sản phẩm...">
-      <button aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
-    </div>
-
     <nav>
       <ul class="nav-list" id="navList">
         <li><a href="#" class="active">Trang Chủ</a></li>
         <li><a href="#products">Sản Phẩm</a></li>
         <li><a href="#categories">Ưu Đãi</a></li>
-        <li><a href="#reviews">Tin Tức</a></li>
+        <li><a href="#reviews">Đánh giá</a></li>
         <li><a href="#contact-section" onclick="openContactModal();return false;">Liên Hệ</a></li>
       </ul>
     </nav>
 
-    <div class="nav-actions">
-      <a href="tel:1900633928" class="hotline-link">
-        <i class="fas fa-phone-alt"></i>
-        <div>
-          <small>Tư Vấn Miễn Phí</small>
-          <strong>1900 633 928</strong>
-        </div>
-      </a>
+    <div class="nav-right">
       <button class="cart-btn" id="cartBtn" onclick="openCartModal()" aria-label="Giỏ hàng">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge" id="cartCount">0</span>
       </button>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
 
@@ -330,9 +317,6 @@
 
     <div class="prod-dots" id="prodDots"></div>
 
-    <div class="text-center fade-up" style="margin-top:32px">
-      <button class="btn btn-outline">XEM TẤT CẢ SẢN PHẨM</button>
-    </div>
   </div>
 </section>
 
@@ -594,24 +578,10 @@
     <div class="contact-grid">
       <div class="contact-info-block fade-up">
         <div class="contact-item">
-          <i class="fas fa-phone-alt"></i>
-          <div>
-            <strong>Hotline Tư Vấn</strong>
-            <p>1900 633 928</p>
-          </div>
-        </div>
-        <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <div>
             <strong>Email Hỗ Trợ</strong>
             <p>support@vhpcare.vn</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <strong>Địa Chỉ</strong>
-            <p>123 Nguyễn Văn Linh, Q.7, TP.HCM</p>
           </div>
         </div>
         <div class="contact-item">
@@ -629,7 +599,6 @@
         <div class="map-placeholder">
           <i class="fas fa-map-marked-alt"></i>
           <p>VHP CARE</p>
-          <small>123 Nguyễn Văn Linh, Q.7, TP.HCM</small>
         </div>
       </div>
     </div>
@@ -644,7 +613,7 @@
         <span class="brand-icon"><i class="fas fa-plus-circle"></i></span>
         <span class="brand-text">VHP <strong>CARE</strong></span>
       </a>
-      <p>Thương hiệu chăm sóc sức khỏe Việt Nam<br>chất lượng cao cấp – giá tốt nhất.</p>
+      <p>Sản phẩm chăm sóc sức khỏe cho bạn</p>
       <div class="footer-social">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -673,7 +642,6 @@
     <div class="footer-col">
       <h4>Liên Hệ</h4>
       <ul class="footer-contact-list">
-        <li><i class="fas fa-phone-alt"></i> 1900 633 928</li>
         <li><i class="fas fa-envelope"></i> support@vhpcare.vn</li>
         <li><i class="fas fa-clock"></i> T2–CN: 8:00 – 22:00</li>
       </ul>
@@ -681,7 +649,7 @@
   </div>
   <div class="footer-bottom">
     <div class="container">
-      <p>&copy; 2026 VHP CARE. All rights reserved. | Được tin dùng bởi hơn 50.000 khách hàng</p>
+      <p>&copy; 2026 VHP CARE. All rights reserved.</p>
     </div>
   </div>
 </footer>
