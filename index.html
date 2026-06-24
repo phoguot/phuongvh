@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VHP Care - Chăm Sóc Sức Khỏe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --primary:       #1a3a6b;
+      --primary-light: #2756a0;
+      --primary-pale:  #e8f2ff;
+      --accent:        #3d9a56;
+      --accent-light:  #c8f0d8;
+      --orange:        #ff6b35;
+      --red:           #e53935;
+      --gold:          #ffc107;
+      --text-dark:     #1a1a2e;
+      --text-mid:      #444;
+      --text-gray:     #777;
+      --text-light:    #aaa;
+      --bg-light:      #f0f6ff;
+      --bg-green:      #f0faf4;
+      --bg-white:      #ffffff;
+      --border:        #ddeeff;
+      --shadow-sm:     0 2px 12px rgba(26,58,107,.08);
+      --shadow:        0 4px 24px rgba(26,58,107,.13);
+      --shadow-lg:     0 8px 40px rgba(26,58,107,.18);
+      --radius:        12px;
+      --radius-lg:     20px;
+      --radius-xl:     28px;
+      --transition:    all .3s ease;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Be Vietnam Pro', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; outline: none; background: none; font-family: inherit; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+    .badge-leaf { font-size: 20px; vertical-align: middle; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: #fff;
+      padding: 13px 30px; border-radius: 8px;
+      font-weight: 700; font-size: 15px;
+      transition: var(--transition);
+    }
+    .btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 11px 26px; border-radius: 8px;
+      font-weight: 600; font-size: 14px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+    .btn-green {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      padding: 11px 24px; border-radius: 8px;
+      font-weight: 600; font-size: 14px;
+      transition: var(--transition);
+    }
+    .btn-green:hover { background: #2e7d43; }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announce-bar {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 7px 20px;
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+    .announce-bar a { color: #90caf9; text-decoration: underline; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: #fff;
+      box-shadow: 0 2px 20px rgba(0,0,0,.07);
+    }
+    .header-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 12px 20px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 21px; font-weight: 800;
+      color: var(--primary); flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--primary); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+    }
+    .search-wrap { flex: 1; max-width: 380px; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: 10px 16px; padding-right: 46px;
+      border: 1.5px solid var(--border); border-radius: 25px;
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: var(--transition); background: var(--bg-light);
+    }
+    .search-wrap input:focus { border-color: var(--primary); background: #fff; }
+    .search-wrap .search-btn {
+      position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    nav.main-nav {
+      display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center;
+    }
+    nav.main-nav a {
+      padding: 8px 13px; border-radius: 6px;
+      font-weight: 500; font-size: 14px;
+      color: var(--text-dark); white-space: nowrap;
+      transition: var(--transition);
+    }
+    nav.main-nav a:hover, nav.main-nav a.active { color: var(--primary); background: var(--primary-pale); }
+    .header-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .phone-tag {
+      display: flex; align-items: center; gap: 9px;
+      color: var(--primary); font-weight: 700; font-size: 14px;
+    }
+    .phone-tag .phone-ic {
+      width: 36px; height: 36px; background: var(--primary-pale);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 15px;
+    }
+    .cart-ico {
+      position: relative; font-size: 22px; color: var(--text-dark); padding: 4px;
+      transition: var(--transition);
+    }
+    .cart-ico:hover { color: var(--primary); }
+    .cart-badge {
+      position: absolute; top: -3px; right: -3px;
+      background: var(--red); color: #fff;
+      width: 17px; height: 17px; border-radius: 50%;
+      font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .menu-tog { display: none; font-size: 24px; color: var(--primary); padding: 4px; }
+
+    /* ===== MOBILE NAV ===== */
+    .mob-nav {
+      display: none; position: fixed; inset: 0;
+      background: #fff; z-index: 1100;
+      flex-direction: column; padding: 80px 24px 24px;
+      gap: 4px; overflow-y: auto;
+    }
+    .mob-nav.open { display: flex; }
+    .mob-nav-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 40px; height: 40px; background: var(--bg-light);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--text-dark);
+    }
+    .mob-nav a {
+      padding: 14px 16px; border-radius: 8px;
+      font-size: 16px; font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .mob-nav a i { color: var(--primary); width: 20px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      margin-top: 92px;
+      background: linear-gradient(135deg, #e4f0ff 0%, #c8e4ff 45%, #c8f4e4 100%);
+      position: relative; overflow: hidden; min-height: 520px;
+      display: flex; align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(61,154,86,.13) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(26,58,107,.07) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 40px;
+      padding: 56px 20px; max-width: 1200px; margin: 0 auto; width: 100%;
+      position: relative; z-index: 1;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(61,154,86,.14); color: var(--accent);
+      padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700;
+      border: 1px solid rgba(61,154,86,.3); margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: 50px; font-weight: 800; color: var(--primary);
+      line-height: 1.1; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .hero-tagline {
+      font-size: 26px; color: var(--accent);
+      font-style: italic; font-weight: 700; margin-bottom: 16px;
+    }
+    .hero-desc { color: var(--text-gray); font-size: 16px; line-height: 1.7; margin-bottom: 28px; }
+    .hero-perks { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+    .hero-perk {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--text-mid); font-weight: 500;
+    }
+    .hero-perk i { color: var(--accent); font-size: 15px; }
+    .hero-visual { display: flex; justify-content: center; }
+    .hero-img-box {
+      width: 100%; max-width: 500px; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(200,244,230,.6));
+      border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-products { display: flex; flex-wrap: wrap; gap: 14px; padding: 24px; justify-content: center; }
+    .hero-prod-card {
+      width: 100px; height: 126px;
+      border-radius: var(--radius);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      font-size: 40px;
+      box-shadow: 0 4px 18px rgba(26,58,107,.15);
+      animation: float 3.5s ease-in-out infinite;
+    }
+    .hero-prod-card span { font-size: 11px; font-weight: 600; color: var(--text-mid); text-align: center; padding: 0 6px; }
+    .hero-prod-card:nth-child(1) { background: linear-gradient(160deg,#b8d9ff,#7ab5ff); animation-delay: 0s; }
+    .hero-prod-card:nth-child(2) { background: linear-gradient(160deg,#b8f0d0,#6dd09a); animation-delay: .6s; }
+    .hero-prod-card:nth-child(3) { background: linear-gradient(160deg,#ffd8b8,#ffb07a); animation-delay: 1.2s; }
+    .hero-prod-card:nth-child(4) { background: linear-gradient(160deg,#e8d4ff,#c8a0ff); animation-delay: 1.8s; }
+    .hero-leaf {
+      position: absolute; border-radius: 50% 0 50% 0;
+      background: rgba(61,154,86,.22); animation: float 3s ease-in-out infinite;
+    }
+    .hero-leaf:nth-child(1) { width: 28px; height: 28px; top: 12%; left: 8%; animation-delay: 0s; }
+    .hero-leaf:nth-child(2) { width: 18px; height: 18px; top: 22%; right: 12%; animation-delay: .7s; }
+    .hero-leaf:nth-child(3) { width: 22px; height: 22px; bottom: 18%; left: 16%; animation-delay: 1.4s; }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(8deg); }
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar { background: #fff; padding: 20px 0; box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--border); }
+    .trust-items { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .trust-item { display: flex; align-items: center; gap: 12px; }
+    .trust-ic {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--primary-pale); color: var(--primary);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .trust-txt strong { display: block; font-size: 14px; font-weight: 700; }
+    .trust-txt span { font-size: 12px; color: var(--text-gray); }
+
+    /* ===== PRODUCTS SECTION ===== */
+    .products-sec { padding: 64px 0; background: var(--bg-light); }
+    .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .prod-card {
+      background: #fff; border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: var(--transition); position: relative;
+    }
+    .prod-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .prod-badge {
+      position: absolute; top: 11px; left: 11px;
+      background: var(--red); color: #fff;
+      padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; z-index: 2;
+    }
+    .prod-combo {
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      background: var(--orange); color: #fff;
+      padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; z-index: 3; white-space: nowrap;
+    }
+    .prod-wish {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px; background: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1); z-index: 2;
+      color: var(--text-gray); font-size: 13px; cursor: pointer;
+      transition: var(--transition);
+    }
+    .prod-wish:hover, .prod-wish.active { color: var(--red); }
+    .prod-img {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg,#e4f0ff,#c8e0ff);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 68px; padding: 16px;
+    }
+    .prod-body { padding: 16px; }
+    .prod-name {
+      font-size: 14px; font-weight: 600; line-height: 1.4;
+      color: var(--text-dark); margin-bottom: 6px; min-height: 40px;
+    }
+    .prod-desc { font-size: 12px; color: var(--text-gray); margin-bottom: 10px; line-height: 1.55; }
+    .prod-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+    .price-new { font-size: 18px; font-weight: 800; color: var(--red); }
+    .price-old { font-size: 12px; color: var(--text-light); text-decoration: line-through; }
+    .price-pct { font-size: 11px; background: rgba(229,57,53,.1); color: var(--red); padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+    .prod-foot { display: flex; align-items: center; justify-content: space-between; }
+    .prod-rating { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+    .stars { color: var(--gold); }
+    .sold-count { color: var(--text-light); font-size: 11px; }
+    .cart-btn-sm {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; transition: var(--transition);
+    }
+    .cart-btn-sm:hover { background: var(--accent); }
+    .pager { display: flex; justify-content: center; gap: 8px; margin-top: 28px; }
+    .pager-dot {
+      width: 10px; height: 10px; border-radius: 5px;
+      background: var(--border); cursor: pointer; transition: var(--transition);
+    }
+    .pager-dot.on { background: var(--primary); width: 26px; }
+    .view-all-row { text-align: center; margin-top: 32px; }
+
+    /* ===== SLIDESHOW ===== */
+    .slide-sec { padding: 64px 0; background: #fff; }
+    .slide-wrap {
+      position: relative; max-width: 960px; margin: 0 auto;
+      border-radius: var(--radius-xl); overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .slides-track { display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+    .slide {
+      min-width: 100%; aspect-ratio: 16/7;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; color: #fff;
+    }
+    .slide:nth-child(1) { background: linear-gradient(135deg,#1a3a6b,#2756a0); }
+    .slide:nth-child(2) { background: linear-gradient(135deg,#1a6b3a,#27a056); }
+    .slide:nth-child(3) { background: linear-gradient(135deg,#6b1a3a,#a02756); }
+    .slide:nth-child(4) { background: linear-gradient(135deg,#7b4f00,#c87d00); }
+    .slide-circle {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+    .slide-circle.c1 { width: 340px; height: 340px; top: -120px; left: -120px; }
+    .slide-circle.c2 { width: 280px; height: 280px; bottom: -100px; right: -100px; }
+    .slide-inner { position: relative; z-index: 1; text-align: center; padding: 40px; }
+    .slide-inner .slide-emoji { font-size: 64px; margin-bottom: 16px; display: block; animation: bounce 2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .slide-inner h3 { font-size: 30px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .slide-inner p { font-size: 15px; opacity: .9; margin-bottom: 22px; }
+    .slide-nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,.9); color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; z-index: 10; transition: var(--transition); box-shadow: var(--shadow-sm);
+    }
+    .slide-nav-btn:hover { background: #fff; box-shadow: var(--shadow); }
+    .slide-nav-btn.s-prev { left: 16px; }
+    .slide-nav-btn.s-next { right: 16px; }
+    .slide-dots-row { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+    .s-dot {
+      width: 10px; height: 10px; border-radius: 5px;
+      background: var(--border); cursor: pointer; transition: var(--transition);
+    }
+    .s-dot.on { background: var(--primary); width: 26px; }
+
+    /* ===== CATEGORIES ===== */
+    .cats-sec { padding: 64px 0; background: var(--bg-light); }
+    .cats-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; }
+    .cat-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 22px 14px; text-align: center; cursor: pointer;
+      transition: var(--transition); box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+    .cat-card:hover {
+      transform: translateY(-5px); box-shadow: var(--shadow);
+      background: var(--primary);
+    }
+    .cat-card:hover .cat-lbl { color: #fff; }
+    .cat-card:hover .cat-ic-wrap { background: rgba(255,255,255,.18); }
+    .cat-ic-wrap {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--primary-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; font-size: 30px; transition: var(--transition);
+    }
+    .cat-lbl { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.35; transition: var(--transition); }
+
+    /* ===== REVIEWS ===== */
+    .reviews-sec { padding: 64px 0; background: #fff; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .review-card {
+      background: var(--bg-light); border-radius: var(--radius);
+      padding: 26px; position: relative; border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .review-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .r-quote-ic {
+      position: absolute; top: -13px; left: 22px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .r-verified { display: inline-flex; align-items: center; gap: 4px; background: rgba(61,154,86,.12); color: var(--accent); padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-bottom: 8px; }
+    .r-stars { color: var(--gold); font-size: 14px; margin-bottom: 10px; }
+    .r-text { font-size: 14px; color: var(--text-gray); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .r-author { display: flex; align-items: center; gap: 12px; }
+    .r-avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff; font-weight: 700; font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .r-name { font-size: 14px; font-weight: 700; }
+    .r-meta { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+    /* ===== STATS BAND ===== */
+    .stats-band { background: var(--primary); color: #fff; padding: 40px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; text-align: center; }
+    .stat-num { font-size: 40px; font-weight: 800; line-height: 1; }
+    .stat-lbl { font-size: 14px; opacity: .8; margin-top: 6px; }
+
+    /* ===== FOOTER ===== */
+    footer { background: #0e2548; color: #fff; padding: 56px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .f-logo { display: flex; align-items: center; gap: 9px; font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+    .f-logo .logo-icon { background: rgba(255,255,255,.18); }
+    .f-desc { font-size: 14px; opacity: .78; line-height: 1.75; margin-bottom: 22px; }
+    .f-socials { display: flex; gap: 10px; }
+    .f-soc {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: rgba(255,255,255,.13);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; transition: var(--transition);
+    }
+    .f-soc:hover { background: rgba(255,255,255,.26); }
+    .f-head { font-size: 16px; font-weight: 700; margin-bottom: 20px; opacity: .96; }
+    .f-links li { margin-bottom: 10px; }
+    .f-links a { font-size: 14px; opacity: .72; display: flex; align-items: center; gap: 7px; transition: var(--transition); }
+    .f-links a:hover { opacity: 1; padding-left: 4px; }
+    .f-contact li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; opacity: .78; margin-bottom: 12px; }
+    .f-contact i { width: 16px; margin-top: 2px; flex-shrink: 0; }
+    .f-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; opacity: .65; }
+
+    /* ===== OVERLAY & POPUP ===== */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.52);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+    .overlay.open { display: flex; }
+    .popup {
+      background: #fff; border-radius: var(--radius-xl);
+      padding: 40px; max-width: 520px; width: 92%;
+      position: relative; max-height: 92vh; overflow-y: auto;
+      animation: popIn .3s cubic-bezier(.175,.885,.32,1.275);
+    }
+    @keyframes popIn { from { transform: scale(.82); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .pop-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 34px; height: 34px; background: var(--bg-light);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; color: var(--text-gray); cursor: pointer; transition: var(--transition);
+    }
+    .pop-close:hover { background: var(--red); color: #fff; }
+    .pop-icon {
+      width: 68px; height: 68px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #fff;
+    }
+    .popup h2 { text-align: center; color: var(--primary); font-size: 22px; margin-bottom: 8px; }
+    .pop-sub { text-align: center; color: var(--text-gray); font-size: 14px; margin-bottom: 26px; }
+    .fg { margin-bottom: 16px; }
+    .fg label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+    .fg label span { color: var(--red); }
+    .fg input, .fg textarea, .fg select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 14px; font-family: inherit; outline: none;
+      background: var(--bg-light); transition: var(--transition);
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--primary); background: #fff; }
+    .fg textarea { resize: vertical; min-height: 90px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .submit-btn {
+      width: 100%; padding: 14px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      font-size: 15px; font-weight: 700; font-family: inherit;
+      transition: var(--transition); margin-top: 6px;
+    }
+    .submit-btn:hover { background: var(--primary-light); }
+    .submit-btn:disabled { opacity: .7; cursor: not-allowed; }
+    .pop-success { text-align: center; padding: 20px; display: none; }
+    .pop-success-ic { font-size: 56px; margin-bottom: 14px; }
+
+    /* ===== PURCHASE NOTIF ===== */
+    .purch-notif {
+      position: fixed; bottom: 24px; left: 24px; z-index: 1500;
+      background: #fff; border-radius: var(--radius); padding: 14px 16px;
+      box-shadow: 0 8px 36px rgba(0,0,0,.15);
+      display: flex; align-items: center; gap: 13px; max-width: 330px;
+      transform: translateX(-130%);
+      transition: transform .45s cubic-bezier(.175,.885,.32,1.275);
+      border-left: 4px solid var(--accent);
+    }
+    .purch-notif.show { transform: translateX(0); }
+    .n-img {
+      width: 50px; height: 50px; border-radius: 9px; flex-shrink: 0;
+      background: linear-gradient(135deg,#e4f0ff,#c0d8ff);
+      display: flex; align-items: center; justify-content: center; font-size: 26px;
+    }
+    .n-body { flex: 1; min-width: 0; }
+    .n-name { font-size: 13px; font-weight: 700; }
+    .n-prod { font-size: 12px; color: var(--text-gray); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .n-time { font-size: 11px; color: var(--accent); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+    .n-close { font-size: 14px; color: var(--text-light); align-self: flex-start; flex-shrink: 0; transition: var(--transition); }
+    .n-close:hover { color: var(--red); }
+
+    /* ===== STICKY BUTTONS ===== */
+    .sticky-btns { position: fixed; bottom: 26px; right: 24px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+    .sticky-b {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; box-shadow: 0 4px 18px rgba(0,0,0,.2);
+      transition: var(--transition); cursor: pointer; text-decoration: none;
+    }
+    .sticky-b:hover { transform: scale(1.12); }
+    .s-wa { background: #25d366; color: #fff; }
+    .s-ph { background: var(--primary); color: #fff; }
+    .s-ct { background: var(--orange); color: #fff; }
+    .btt {
+      position: fixed; bottom: 26px; right: 24px; z-index: 999;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      box-shadow: var(--shadow); cursor: pointer; transition: var(--transition);
+      opacity: 0; pointer-events: none;
+    }
+    .btt.vis { opacity: 1; pointer-events: auto; }
+    .btt:hover { transform: translateY(-3px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(2,1fr); }
+      .cats-grid { grid-template-columns: repeat(3,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .announce-bar { font-size: 11px; }
+      .main-nav, .phone-tag { display: none; }
+      .search-wrap { flex: 1; max-width: none; }
+      .menu-tog { display: block; }
+      .hero { margin-top: 70px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+      .hero-tagline { font-size: 19px; }
+      .hero-visual { display: none; }
+      .trust-items { display: grid; grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .f-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .slide-inner h3 { font-size: 22px; }
+    }
+    @media (max-width: 520px) {
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .cats-grid { grid-template-columns: repeat(2,1fr); }
+      .hero h1 { font-size: 26px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .popup { padding: 24px 18px; }
+      .fg-row { grid-template-columns: 1fr; }
+      .section-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ANNOUNCEMENT BAR ===== -->
+<div class="announce-bar">
+  🎉 Miễn phí vận chuyển cho đơn từ 300.000đ | Hotline: <a href="tel:1900633928">1900 633 928</a> — Hỗ trợ 24/7
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <a href="#hero" class="logo">
+      <div class="logo-icon"><i class="fas fa-plus"></i></div>
+      VHP CARE
+    </a>
+    <div class="search-wrap">
+      <input type="text" placeholder="Tìm kiếm sản phẩm...">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <nav class="main-nav">
+      <a href="#hero" class="active">Trang Chủ</a>
+      <a href="#products">Sản Phẩm</a>
+      <a href="#deal">Ưu Đãi</a>
+      <a href="#reviews">Tin Tức</a>
+      <a href="#" onclick="openContact(event)">Liên Hệ</a>
+    </nav>
+    <div class="header-right">
+      <div class="phone-tag">
+        <div class="phone-ic"><i class="fas fa-phone-alt"></i></div>
+        <div>
+          <div style="font-size:10px;color:#999;font-weight:400">Tư vấn miễn phí</div>
+          <div>1900 633 928</div>
+        </div>
+      </div>
+      <button class="cart-ico"><i class="fas fa-shopping-cart"></i><span class="cart-badge">0</span></button>
+      <button class="menu-tog" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE NAV ===== -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-nav-close" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+  <a href="#hero"     onclick="toggleMenu()"><i class="fas fa-home"></i> Trang Chủ</a>
+  <a href="#products" onclick="toggleMenu()"><i class="fas fa-box"></i> Sản Phẩm</a>
+  <a href="#deal"     onclick="toggleMenu()"><i class="fas fa-tag"></i> Ưu Đãi</a>
+  <a href="#reviews"  onclick="toggleMenu()"><i class="fas fa-star"></i> Đánh Giá</a>
+  <a href="#"         onclick="toggleMenu(); openContact(event)"><i class="fas fa-envelope"></i> Liên Hệ</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-pill"><i class="fas fa-check-circle"></i> Sản phẩm chính hãng 100%</div>
+      <h1>CHĂM SÓC SỨC KHỎE</h1>
+      <div class="hero-tagline">Nâng niu từng khoảnh khắc</div>
+      <p class="hero-desc">Sản phẩm chất lượng – An toàn – Hiệu quả<br>Đồng hành cùng bạn và gia đình mỗi ngày</p>
+      <div class="hero-perks">
+        <div class="hero-perk"><i class="fas fa-shield-alt"></i> Chính hãng 100%</div>
+        <div class="hero-perk"><i class="fas fa-shipping-fast"></i> Giao hàng toàn quốc</div>
+        <div class="hero-perk"><i class="fas fa-undo-alt"></i> Đổi trả 7 ngày</div>
+        <div class="hero-perk"><i class="fas fa-headset"></i> Hỗ trợ 24/7</div>
+      </div>
+      <a href="#products" class="btn-primary" style="font-size:16px;padding:15px 36px">
+        <i class="fas fa-shopping-bag"></i> MUA NGAY
+      </a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-box">
+        <div class="hero-leaf"></div>
+        <div class="hero-leaf"></div>
+        <div class="hero-leaf"></div>
+        <div class="hero-products">
+          <div class="hero-prod-card">🧴<span>Xịt Phụ Khoa</span></div>
+          <div class="hero-prod-card">🌿<span>Dung Dịch VS</span></div>
+          <div class="hero-prod-card">🛁<span>Muối Tắm</span></div>
+          <div class="hero-prod-card">💊<span>Chăm Sóc SK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <div class="trust-ic"><i class="fas fa-certificate"></i></div>
+        <div class="trust-txt"><strong>Chính Hãng</strong><span>100% chính hãng</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-ic"><i class="fas fa-shipping-fast"></i></div>
+        <div class="trust-txt"><strong>Giao Hàng Nhanh</strong><span>Toàn quốc</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-ic"><i class="fas fa-undo-alt"></i></div>
+        <div class="trust-txt"><strong>Đổi Trả Dễ Dàng</strong><span>Trong 7 ngày</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-ic"><i class="fas fa-comments"></i></div>
+        <div class="trust-txt"><strong>Tư Vấn Tận Tâm</strong><span>Hỗ trợ 24/7</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products-sec" id="products">
+  <div class="container">
+    <h2 class="section-title">SẢN PHẨM NỔI BẬT <span class="badge-leaf">🌿</span></h2>
+    <p class="section-sub">Những sản phẩm được yêu thích và tin dùng nhất</p>
+    <div class="products-grid" id="prodGrid"></div>
+    <div class="pager" id="pager"></div>
+    <div class="view-all-row">
+      <a href="#" class="btn-outline">Xem Tất Cả Sản Phẩm <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDESHOW ===== -->
+<section class="slide-sec" id="deal">
+  <div class="container">
+    <h2 class="section-title">KHÁM PHÁ VHP CARE <span class="badge-leaf">✨</span></h2>
+    <p class="section-sub">Ưu đãi và sản phẩm mới nhất dành riêng cho bạn</p>
+    <div class="slide-wrap">
+      <div class="slides-track" id="slidesTrack">
+        <div class="slide">
+          <div class="slide-circle c1"></div><div class="slide-circle c2"></div>
+          <div class="slide-inner">
+            <span class="slide-emoji">🌿</span>
+            <h3>BỘ SẢN PHẨM PHỤ KHOA</h3>
+            <p>Femini Inner Spray — Sạch sẽ, an toàn, tự tin mỗi ngày</p>
+            <a href="#products" class="btn-primary" style="background:#fff;color:#1a3a6b;margin:0 auto">Khám Phá Ngay</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-circle c1"></div><div class="slide-circle c2"></div>
+          <div class="slide-inner">
+            <span class="slide-emoji">🛁</span>
+            <h3>EPSOM SALT MUỐI TẮM</h3>
+            <p>Thư giãn, phục hồi cơ thể sau một ngày dài mệt mỏi</p>
+            <a href="#products" class="btn-primary" style="background:#fff;color:#1a6b3a;margin:0 auto">Mua Ngay</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-circle c1"></div><div class="slide-circle c2"></div>
+          <div class="slide-inner">
+            <span class="slide-emoji">💊</span>
+            <h3>COMBO TIẾT KIỆM ĐẾN 50%</h3>
+            <p>Ưu đãi đặc biệt chỉ dành cho thành viên VHP Care</p>
+            <a href="#products" class="btn-primary" style="background:#fff;color:#6b1a3a;margin:0 auto">Xem Ưu Đãi</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-circle c1"></div><div class="slide-circle c2"></div>
+          <div class="slide-inner">
+            <span class="slide-emoji">🎁</span>
+            <h3>MUA 2 TẶNG 1 TUẦN NÀY</h3>
+            <p>Áp dụng cho tất cả sản phẩm trong combo đặc biệt</p>
+            <a href="#products" class="btn-primary" style="background:#fff;color:#7b4f00;margin:0 auto">Nhận Ưu Đãi</a>
+          </div>
+        </div>
+      </div>
+      <button class="slide-nav-btn s-prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+      <button class="slide-nav-btn s-next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="slide-dots-row" id="slideDots"></div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="cats-sec">
+  <div class="container">
+    <h2 class="section-title">DANH MỤC SẢN PHẨM <span class="badge-leaf">🌿</span></h2>
+    <div class="cats-grid">
+      <div class="cat-card"><div class="cat-ic-wrap">🧴</div><div class="cat-lbl">Xịt Phụ Khoa</div></div>
+      <div class="cat-card"><div class="cat-ic-wrap">🫧</div><div class="cat-lbl">Dung Dịch Vệ Sinh</div></div>
+      <div class="cat-card"><div class="cat-ic-wrap">🛁</div><div class="cat-lbl">Muối Tắm</div></div>
+      <div class="cat-card"><div class="cat-ic-wrap">✨</div><div class="cat-lbl">Chăm Sóc Cá Nhân</div></div>
+      <div class="cat-card"><div class="cat-ic-wrap">💊</div><div class="cat-lbl">Hỗ Trợ Sức Khỏe</div></div>
+      <div class="cat-card"><div class="cat-ic-wrap">🩺</div><div class="cat-lbl">Dụng Cụ Y Tế</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS BAND ===== -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">50.000+</div><div class="stat-lbl">Khách Hàng Tin Dùng</div></div>
+      <div><div class="stat-num">200+</div><div class="stat-lbl">Sản Phẩm Chính Hãng</div></div>
+      <div><div class="stat-num">4.9 ⭐</div><div class="stat-lbl">Đánh Giá Trung Bình</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-lbl">Hỗ Trợ Khách Hàng</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews-sec" id="reviews">
+  <div class="container">
+    <h2 class="section-title">KHÁCH HÀNG NÓI GÌ <span class="badge-leaf">⭐</span></h2>
+    <p class="section-sub">Hàng chục nghìn khách hàng tin tưởng và yêu thích sản phẩm VHP Care</p>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo"><div class="logo-icon"><i class="fas fa-plus"></i></div> VHP CARE</div>
+        <p class="f-desc">VHP Care — thương hiệu sức khỏe và sắc đẹp được tin dùng bởi hàng triệu người Việt. Cam kết mang đến sản phẩm chất lượng, an toàn và hiệu quả mỗi ngày.</p>
+        <div class="f-socials">
+          <a href="#" class="f-soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="f-soc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="f-soc"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="f-soc"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Liên Kết Nhanh</div>
+        <ul class="f-links">
+          <li><a href="#hero"><i class="fas fa-chevron-right"></i> Trang Chủ</a></li>
+          <li><a href="#products"><i class="fas fa-chevron-right"></i> Sản Phẩm</a></li>
+          <li><a href="#deal"><i class="fas fa-chevron-right"></i> Ưu Đãi</a></li>
+          <li><a href="#reviews"><i class="fas fa-chevron-right"></i> Đánh Giá</a></li>
+          <li><a href="#" onclick="openContact(event)"><i class="fas fa-chevron-right"></i> Liên Hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-head">Chính Sách</div>
+        <ul class="f-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Chính Sách Mua Hàng</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Chính Sách Đổi Trả</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Chính Sách Bảo Mật</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng Dẫn Thanh Toán</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Câu Hỏi Thường Gặp</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-head">Liên Hệ</div>
+        <ul class="f-contact">
+          <li><i class="fas fa-phone-alt"></i> 1900 633 928</li>
+          <li><i class="fas fa-envelope"></i> vhpcare@gmail.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</li>
+          <li><i class="fas fa-clock"></i> 8:00 – 22:00 (Thứ 2 – CN)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div>© 2024 VHP Care. All rights reserved.</div>
+      <div>Thiết kế bởi <strong>VHP Team</strong></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CONTACT POPUP ===== -->
+<div class="overlay" id="contactOverlay" onclick="overlayClick(event)">
+  <div class="popup" id="contactPopup">
+    <button class="pop-close" onclick="closeContact()"><i class="fas fa-times"></i></button>
+    <div id="popFormArea">
+      <div class="pop-icon"><i class="fas fa-envelope-open-text"></i></div>
+      <h2>Liên Hệ Với Chúng Tôi</h2>
+      <p class="pop-sub">Điền thông tin bên dưới — chúng tôi sẽ tư vấn trong vòng <strong>30 phút</strong></p>
+      <form id="contactForm" onsubmit="submitContact(event)" novalidate>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Họ và Tên <span>*</span></label>
+            <input type="text" name="name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="fg">
+            <label>Số Điện Thoại <span>*</span></label>
+            <input type="tel" name="phone" placeholder="0912 345 678" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="example@gmail.com">
+        </div>
+        <div class="fg">
+          <label>Sản Phẩm Quan Tâm</label>
+          <select name="product">
+            <option value="">-- Chọn sản phẩm --</option>
+            <option>Xịt Phụ Khoa Femini Inner Spray 30ml</option>
+            <option>Combo 2 Xịt Vùng Kín Femini Inner Spray</option>
+            <option>Combo 3 Xịt Phụ Khoa Femini Inner Spray</option>
+            <option>Feminner Bot Vệ Sinh Phụ Nữ Femini Sensi 100ml</option>
+            <option>Muối Tắm Epsom Salt Premium 500g</option>
+            <option>Bộ Chăm Sóc Vùng Kín Toàn Diện</option>
+            <option>Sản phẩm khác</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Nội Dung <span>*</span></label>
+          <textarea name="message" placeholder="Mô tả nhu cầu hoặc câu hỏi của bạn..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <i class="fas fa-paper-plane"></i>&nbsp; Gửi Thông Tin Ngay
+        </button>
+      </form>
+    </div>
+    <div class="pop-success" id="popSuccess">
+      <div class="pop-success-ic">✅</div>
+      <h3 style="color:var(--accent);margin-bottom:8px;font-size:20px">Gửi Thành Công!</h3>
+      <p style="color:var(--text-gray);line-height:1.6">Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi trong vòng <strong>30 phút</strong>.</p>
+      <button class="btn-primary" style="margin:20px auto 0" onclick="closeContact()">
+        <i class="fas fa-check"></i> Đóng
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PURCHASE NOTIFICATION ===== -->
+<div class="purch-notif" id="purchNotif">
+  <div class="n-img" id="nImg">🧴</div>
+  <div class="n-body">
+    <div class="n-name" id="nName">Nguyễn Thị Hoa</div>
+    <div class="n-prod" id="nProd">vừa mua Femini Inner Spray 30ml</div>
+    <div class="n-time"><i class="fas fa-clock"></i><span id="nTime">2 phút trước · Hà Nội</span></div>
+  </div>
+  <button class="n-close" onclick="hideNotif()"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- ===== STICKY BUTTONS ===== -->
+<div class="sticky-btns">
+  <a href="https://zalo.me/0912345678" class="sticky-b s-wa" title="Chat Zalo"><i class="fas fa-comment-dots"></i></a>
+  <a href="tel:1900633928"             class="sticky-b s-ph" title="Gọi ngay"><i class="fas fa-phone-alt"></i></a>
+  <button                              class="sticky-b s-ct" title="Liên hệ" onclick="openContact(event)"><i class="fas fa-envelope"></i></button>
+</div>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ---------- DATA ---------- */
+const PRODUCTS = [
+  { name:"Combo 2 Xịt Vùng Kín Femini Inner Spray 30ml", desc:"Làm sạch, kháng viêm, khử mùi, hương thơm mát", price:"279.000đ", old:"540.000đ", pct:"-48%", rating:4.9, sold:"704", emoji:"🧴" },
+  { name:"Xịt Phụ Khoa Femini Inner Spray 30ml", desc:"Làm sạch dịu nhẹ, khử mùi, kháng khuẩn hiệu quả", price:"159.000đ", old:"240.000đ", pct:"-33%", rating:5.0, sold:"512", emoji:"💧" },
+  { name:"Combo 3 Xịt Phụ Khoa Femini Inner Spray 30ml", desc:"Hỗ trợ giảm ngứa, kháng khuẩn, khử mùi lâu dài", price:"399.000đ", old:"780.000đ", pct:"-49%", rating:5.0, sold:"309", emoji:"🌿", combo:"x3" },
+  { name:"Feminner Bot Vệ Sinh Phụ Nữ Femini Sensi 100ml", desc:"Làm sạch dịu nhẹ, cân bằng pH cho da nhạy cảm", price:"165.000đ", old:"240.000đ", pct:"-31%", rating:5.0, sold:"310", emoji:"🫧" },
+  { name:"Muối Tắm Epsom Salt Premium 500g", desc:"Thư giãn, phục hồi cơ thể, giảm đau nhức hiệu quả", price:"189.000đ", old:"280.000đ", pct:"-32%", rating:4.8, sold:"421", emoji:"🛁" },
+  { name:"Bộ Chăm Sóc Vùng Kín Toàn Diện", desc:"Combo đầy đủ cho quy trình chăm sóc hàng ngày", price:"449.000đ", old:"850.000đ", pct:"-47%", rating:4.9, sold:"187", emoji:"✨" },
+  { name:"Dung Dịch Vệ Sinh Oraltana 200ml", desc:"Kháng khuẩn mạnh, an toàn cho phụ nữ mang thai", price:"129.000đ", old:"200.000đ", pct:"-35%", rating:4.7, sold:"632", emoji:"🌺" },
+  { name:"Xịt Khử Mùi Toàn Thân Natural Fresh 100ml", desc:"Hương thơm tự nhiên, kháng khuẩn hiệu quả 24h", price:"95.000đ",  old:"150.000đ", pct:"-37%", rating:4.6, sold:"896", emoji:"🌸" },
+];
+
+const REVIEWS = [
+  { text:"Mình dùng Femini Inner Spray được 2 tháng, cảm giác sạch sẽ và thoải mái hơn hẳn. Mùi thơm dễ chịu, không gây kích ứng. Sẽ tiếp tục ủng hộ VHP Care!", name:"Nguyễn Thị Hoa", meta:"Femini Inner Spray 30ml · Hà Nội", stars:5 },
+  { text:"Combo 3 sản phẩm giá rất hợp lý, chất lượng không thua hàng nhập. Giao hàng nhanh, đóng gói cẩn thận. Nhân viên tư vấn nhiệt tình. 10 điểm!", name:"Trần Thị Mai", meta:"Combo 3 Xịt Phụ Khoa · TP. HCM", stars:5 },
+  { text:"Muối tắm Epsom Salt thật sự tuyệt vời! Sau khi tắm cảm thấy cơ thể nhẹ nhàng, thư giãn. Da mịn màng và không khô chút nào. Rất đáng tiền!", name:"Lê Thị Thu", meta:"Muối Tắm Epsom Salt · Đà Nẵng", stars:5 },
+  { text:"Đã mua nhiều lần tại VHP Care, chưa lần nào thất vọng. Sản phẩm chính hãng, giá tốt, giao đúng hẹn. Team hỗ trợ rất nhiệt tình và chuyên nghiệp!", name:"Phạm Thị Lan", meta:"Dung Dịch Vệ Sinh · Cần Thơ", stars:5 },
+  { text:"Xịt phụ khoa an toàn, không gây dị ứng. Mùi thơm nhẹ nhàng, sạch sẽ kéo dài cả ngày. Mình đã giới thiệu cho nhiều bạn bè rồi, ai cũng thích!", name:"Hoàng Thị Linh", meta:"Femini Inner Spray 30ml · Bình Dương", stars:5 },
+  { text:"Sản phẩm đúng như mô tả, chất lượng tốt. Giá cả phải chăng so với thị trường. Mình sẽ mua thêm để dùng lâu dài. Cảm ơn VHP Care rất nhiều!", name:"Vũ Thị Nga", meta:"Bộ Chăm Sóc Toàn Diện · Hải Phòng", stars:4 },
+  { text:"Lần đầu dùng sản phẩm VHP Care mà đã mê ngay. Cảm giác da dễ chịu hơn hẳn, không còn ngứa ngáy. Chắc chắn sẽ quay lại mua tiếp ạ!", name:"Đặng Kim Oanh", meta:"Femini Sensi 100ml · Huế", stars:5 },
+  { text:"Giao hàng siêu nhanh, chỉ 2 ngày đã nhận được. Sản phẩm đẹp, hương thơm dễ chịu. Đặc biệt giá rẻ hơn so với mua ở cửa hàng bên ngoài nhiều!", name:"Bùi Thảo Ngân", meta:"Muối Tắm Epsom Salt · Nha Trang", stars:5 },
+  { text:"Dùng thử theo lời khuyên của bạn bè và không hề thất vọng. Chất lượng vượt kỳ vọng, da cải thiện rõ rệt sau 2 tuần sử dụng đều đặn.", name:"Ngô Thị Bích", meta:"Bộ Chăm Sóc Vùng Kín · Vũng Tàu", stars:5 },
+];
+
+const CUSTOMERS = [
+  { name:"Nguyễn Thị Hoa",  city:"Hà Nội",    prod:"Femini Inner Spray 30ml",     emoji:"🧴", time:"2 phút trước" },
+  { name:"Trần Mai Anh",    city:"TP. HCM",   prod:"Combo 3 Xịt Phụ Khoa",       emoji:"🌿", time:"5 phút trước" },
+  { name:"Lê Thu Thảo",     city:"Đà Nẵng",   prod:"Muối Tắm Epsom Salt",         emoji:"🛁", time:"3 phút trước" },
+  { name:"Phạm Lan Anh",    city:"Cần Thơ",   prod:"Combo 2 Xịt Vùng Kín",       emoji:"💧", time:"8 phút trước" },
+  { name:"Hoàng Linh Chi",  city:"Bình Dương", prod:"Dung Dịch Vệ Sinh 200ml",    emoji:"🫧", time:"1 phút trước" },
+  { name:"Vũ Thị Ngọc",    city:"Hải Phòng", prod:"Femini Sensi 100ml",          emoji:"🌺", time:"4 phút trước" },
+  { name:"Đặng Kim Oanh",   city:"Huế",       prod:"Bộ Chăm Sóc Toàn Diện",      emoji:"✨", time:"7 phút trước" },
+  { name:"Bùi Thảo Ngân",  city:"Nha Trang", prod:"Xịt Khử Mùi Natural Fresh",   emoji:"🌸", time:"6 phút trước" },
+  { name:"Lý Thị Thanh",   city:"Cần Thơ",   prod:"Combo 2 Xịt Vùng Kín",       emoji:"🧴", time:"10 phút trước" },
+  { name:"Ngô Thị Bích",   city:"Vũng Tàu",  prod:"Bộ Chăm Sóc Vùng Kín",       emoji:"💊", time:"12 phút trước" },
+];
+
+/* ---------- PRODUCTS ---------- */
+let curPage = 0;
+const PER_PAGE = 4;
+
+function renderProds(page) {
+  const grid = document.getElementById('prodGrid');
+  const start = page * PER_PAGE;
+  grid.innerHTML = PRODUCTS.slice(start, start + PER_PAGE).map(p => `
+    <div class="prod-card">
+      <span class="prod-badge">${p.pct}</span>
+      ${p.combo ? `<span class="prod-combo">Combo ${p.combo}</span>` : ''}
+      <button class="prod-wish" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+      <div class="prod-img">${p.emoji}</div>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-desc">${p.desc}</div>
+        <div class="prod-price">
+          <span class="price-new">${p.price}</span>
+          <span class="price-old">${p.old}</span>
+          <span class="price-pct">${p.pct}</span>
+        </div>
+        <div class="prod-foot">
+          <div class="prod-rating">
+            <span class="stars">⭐ ${p.rating}</span>
+            <span class="sold-count">· ${p.sold} đã bán</span>
+          </div>
+          <button class="cart-btn-sm" onclick="addCart(this)"><i class="fas fa-shopping-cart"></i></button>
+        </div>
+      </div>
+    </div>`).join('');
+  renderPager();
+}
+
+function renderPager() {
+  const total = Math.ceil(PRODUCTS.length / PER_PAGE);
+  document.getElementById('pager').innerHTML = Array.from({length: total}, (_,i) =>
+    `<div class="pager-dot${i===curPage?' on':''}" onclick="goPage(${i})"></div>`).join('');
+}
+
+function goPage(p) { curPage = p; renderProds(p); }
+function addCart(btn) {
+  const badge = document.querySelector('.cart-badge');
+  badge.textContent = parseInt(badge.textContent||0) + 1;
+  btn.style.background = 'var(--accent)';
+  btn.innerHTML = '<i class="fas fa-check"></i>';
+  setTimeout(() => { btn.style.background = ''; btn.innerHTML = '<i class="fas fa-shopping-cart"></i>'; }, 1600);
+}
+function toggleWish(btn) {
+  btn.classList.toggle('active');
+  btn.innerHTML = btn.classList.contains('active') ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+}
+renderProds(0);
+
+/* ---------- SLIDESHOW ---------- */
+let curSlide = 0;
+const SLIDES = document.querySelectorAll('.slide');
+const N_SLIDES = SLIDES.length;
+
+(function buildDots() {
+  document.getElementById('slideDots').innerHTML = Array.from({length:N_SLIDES},(_,i) =>
+    `<div class="s-dot${i===0?' on':''}" onclick="goSlide(${i})"></div>`).join('');
+})();
+
+function goSlide(n) {
+  curSlide = (n + N_SLIDES) % N_SLIDES;
+  document.getElementById('slidesTrack').style.transform = `translateX(-${curSlide*100}%)`;
+  document.querySelectorAll('.s-dot').forEach((d,i) => d.classList.toggle('on', i===curSlide));
+}
+function nextSlide() { goSlide(curSlide + 1); }
+function prevSlide() { goSlide(curSlide - 1); }
+setInterval(nextSlide, 5000);
+
+/* ---------- REVIEWS ---------- */
+document.getElementById('reviewsGrid').innerHTML = REVIEWS.map(r => `
+  <div class="review-card">
+    <div class="r-quote-ic"><i class="fas fa-quote-left"></i></div>
+    <div class="r-verified"><i class="fas fa-check-circle"></i> Đã mua hàng</div>
+    <div class="r-stars">${'⭐'.repeat(r.stars)}</div>
+    <p class="r-text">"${r.text}"</p>
+    <div class="r-author">
+      <div class="r-avatar">${r.name.charAt(0)}</div>
+      <div>
+        <div class="r-name">${r.name}</div>
+        <div class="r-meta">${r.meta}</div>
+      </div>
+    </div>
+  </div>`).join('');
+
+/* ---------- CONTACT POPUP ---------- */
+function openContact(e) {
+  if (e) e.preventDefault();
+  document.getElementById('contactOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeContact() {
+  document.getElementById('contactOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    document.getElementById('popFormArea').style.display = '';
+    document.getElementById('popSuccess').style.display = 'none';
+    document.getElementById('contactForm').reset();
+  }, 400);
+}
+function overlayClick(e) { if (e.target === document.getElementById('contactOverlay')) closeContact(); }
+
+function submitContact(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = document.getElementById('submitBtn');
+
+  /* basic validation */
+  const name  = form.name.value.trim();
+  const phone = form.phone.value.trim();
+  const msg   = form.message.value.trim();
+  if (!name || !phone || !msg) { alert('Vui lòng điền đầy đủ thông tin bắt buộc!'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>&nbsp; Đang gửi...';
+
+  /* Build mailto link as primary delivery — always works without backend */
+  const subject = encodeURIComponent('Yêu cầu tư vấn từ VHP Care Website');
+  const body    = encodeURIComponent(
+    `Họ và tên: ${name}\n` +
+    `Số điện thoại: ${phone}\n` +
+    `Email: ${form.email.value.trim() || 'Không cung cấp'}\n` +
+    `Sản phẩm quan tâm: ${form.product.value || 'Chưa chọn'}\n\n` +
+    `Nội dung:\n${msg}`
+  );
+  /* Open mail client */
+  window.open(`mailto:eros.yun711@gmail.com?subject=${subject}&body=${body}`, '_blank');
+
+  /* Show success UI after short delay */
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i>&nbsp; Gửi Thông Tin Ngay';
+    document.getElementById('popFormArea').style.display = 'none';
+    document.getElementById('popSuccess').style.display  = 'block';
+  }, 800);
+}
+
+/* ---------- PURCHASE NOTIFICATION ---------- */
+let nTimeout;
+function showNotif() {
+  const c = CUSTOMERS[Math.floor(Math.random() * CUSTOMERS.length)];
+  document.getElementById('nImg').textContent  = c.emoji;
+  document.getElementById('nName').textContent = c.name;
+  document.getElementById('nProd').textContent = `vừa mua ${c.prod}`;
+  document.getElementById('nTime').textContent = `${c.time} · ${c.city}`;
+  const el = document.getElementById('purchNotif');
+  el.classList.add('show');
+  clearTimeout(nTimeout);
+  nTimeout = setTimeout(() => el.classList.remove('show'), 4500);
+}
+function hideNotif() {
+  clearTimeout(nTimeout);
+  document.getElementById('purchNotif').classList.remove('show');
+}
+setTimeout(showNotif, 3500);
+setInterval(() => setTimeout(showNotif, Math.random() * 8000), 40000);
+
+/* ---------- MOBILE MENU ---------- */
+function toggleMenu() { document.getElementById('mobNav').classList.toggle('open'); }
+
+/* ---------- BACK TO TOP ---------- */
+window.addEventListener('scroll', () => {
+  document.getElementById('btt').classList.toggle('vis', window.scrollY > 400);
+});
+</script>
+
+</body>
+</html>
